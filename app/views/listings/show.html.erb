@@ -1,2 +1,43 @@
-<h1>Listings#show</h1>
-<p>Find me in app/views/listings/show.html.erb</p>
+<h1>Listed by <%= link_to @listing.user.email, user_path(@listing.user) %></h1>
+<p>
+  <strong>City:</strong>
+  <%= @listing.city %> 
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @listing.address %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @listing.description %>
+</p>
+
+<p>
+  <strong>Max Guests:</strong>
+  <%= @listing.num_guests %>
+</p>
+
+<p>
+  <strong>Bedrooms:</strong>
+  <%= @listing.num_bedrooms %>
+</p>
+
+<p>
+  <strong>Bathrooms:</strong>
+  <%= @listing.num_bathrooms %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= number_to_currency(@listing.price, unit: "RM") %>
+</p>
+
+<p>
+  <strong>Availability:</strong>
+  <%= bool_to_icon(@listing.availability) %>
+</p>
+
+<%= link_to 'Edit', edit_listing_path(@listing) %><br>
+<%= link_to 'Back', listings_path %>

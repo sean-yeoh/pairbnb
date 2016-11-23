@@ -1,21 +1,8 @@
 Rails.application.routes.draw do
-  get 'listings/index'
-
-  get 'listings/new'
-
-  get 'listings/create'
-
-  get 'listings/show'
-
-  get 'listings/edit'
-
-  get 'listings/update'
-
-  get 'listings/destroy'
-
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/auth/facebook", as: "facebook_sign_in" 
-  resources :users, only: [:show, :edit, :update, :destroy] 
+  resources :users, only: [:show, :edit, :update, :destroy]
+  resources :listings
   root 'welcome#index'
   
   # put specific routes at top
