@@ -1,9 +1,27 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+  get 'listings/index'
+
+  get 'listings/new'
+
+  get 'listings/create'
+
+  get 'listings/show'
+
+  get 'listings/edit'
+
+  get 'listings/update'
+
+  get 'listings/destroy'
 
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/auth/facebook", as: "facebook_sign_in" 
   resources :users, only: [:show, :edit, :update, :destroy] 
+  root 'welcome#index'
+  
+  # put specific routes at top
+  # put general routes at bottom
+  # put root route last
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -55,3 +55,5 @@ group :development do
   gem 'spring'
 end
 
+  # refactored faker gem
+  gem 'ffaker'
