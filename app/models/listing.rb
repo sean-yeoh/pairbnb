@@ -6,5 +6,4 @@ class Listing < ActiveRecord::Base
   validates :num_bedrooms, presence: true
   validates :num_bathrooms, presence: true
   validates :price, presence: true
-  validates :availability, presence: true
 end
