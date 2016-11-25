@@ -1,1 +1,14 @@
 <h1>This is <%= @user.email %>'s profile.</h1>
+<% if @user == current_user || current_user.superadmin? %>
+  <%= link_to "Edit Profile", edit_user_path %><br>
+<% end %>
+<% if @user.avatar.file.nil? %>
+  <%= form_for @user do |f| %>
+    <%= f.file_field :avatar %>
+    <%= f.submit "Upload" %>
+  <% end %>
+<% else %>
+  <%= image_tag(@user.avatar.thumb.url.to_s, alt: "#{@user.email}'s Avatar") %><br>
+<% end %>
+
+

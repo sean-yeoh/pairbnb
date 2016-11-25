@@ -1,0 +1,22 @@
+<%= form_for @user, :html => {:multipart => true} do |f| %>
+
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+
+  <p>
+    <% if @user.avatar.file.nil? %>
+      <%= f.file_field :avatar %>
+    <% else %>
+      <%= image_tag(@user.avatar.thumb.url, alt: "#{@user.email}'s Avatar") %><br>
+      <label>
+        <%= f.check_box :remove_avatar %>
+        Remove avatar
+      </label>
+    <%= f.file_field :avatar %>
+    <% end %>
+  </p>
+
+  <p><%= f.submit %></p>
+<% end %>

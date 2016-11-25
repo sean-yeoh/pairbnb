@@ -8,23 +8,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <%= link_to 'Home', root_path %><br>
+  
   <% if signed_in? %>
-      Signed in as: <%= current_user.email %><br>
-      Role: <%= current_user.role %>
-      <%= button_to 'Sign out', sign_out_path, method: :delete %>
-    <% else %>
+    <%= render 'layouts/navbar' %>
+  <% else %>
+    <%= render 'layouts/navbar_login' %>
       <%= link_to 'Sign up', sign_up_path %><br/>
       <%= link_to 'Sign in', sign_in_path %><br/>
-    <% end %>
+  <% end %>
 
-    <div id="flash">
-      <% flash.each do |key, value| %>
-        <div class="flash alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-    </div>
+  <div id="flash">
+    <% flash.each do |key, value| %>
+      <div class="flash alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+  </div>
 
   <%= yield %>
+
+  <%= render 'layouts/footer'%>
 
 </body>
 </html>
