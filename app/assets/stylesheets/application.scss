@@ -14,3 +14,42 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.brand { 
+    max-height: 30px;
+    max-width: 30px; 
+    overflow: visible;
+    padding-top: -10px;
+    padding-bottom: 0; 
+}
+
+.navbar-avatar {
+  width:30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.role {
+  line-height: 50px;
+}
+
+
+#footer {
+  clear: both;
+  position: relative;
+  z-index: 10;
+  height: 3em;
+  margin-top: -3em;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  margin: auto;
+  ul {
+    li {
+      float: left;
+      margin-right: 20px;
+      list-style: none;
+      display: inline;
+    }
+  }
+}

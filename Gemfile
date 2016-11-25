@@ -62,3 +62,9 @@ end
   # Use will_paginate gem to paginate listings and paginate bootstrap gem
   gem 'will_paginate', '~> 3.1.0'
   gem 'will_paginate-bootstrap'
+
+  # Use carrierwave gem to upload files to Ruby applications
+  gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
+  # Minimagick gem
+  gem "mini_magick"

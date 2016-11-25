@@ -2,12 +2,14 @@ class User < ActiveRecord::Base
   include Clearance::User
   has_many :authentications, :dependent => :destroy
   has_many :listings, :dependent => :destroy
+  mount_uploader :avatar, AvatarUploader
 
   def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|
       u.password = (('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a).sample(rand(8..10)).join
-      u.first_name = auth_hash["info"]["first_name"]
+      u.name = auth_hash["extra"]["raw_info"]["name"]
       u.email = auth_hash["extra"]["raw_info"]["email"]
+      u.remote_avatar_url = auth_hash["info"]["image"].gsub('http://','https://')
       u.authentications<<(authentication)
     end
   end

@@ -1,43 +1,38 @@
 <h1>Listed by <%= link_to @listing.user.email, user_path(@listing.user) %></h1>
-<p>
+
+<%= render 'carousel' %>
+
+
   <strong>City:</strong>
-  <%= @listing.city %> 
-</p>
+  <%= @listing.city %><br>
 
-<p>
+
   <strong>Address:</strong>
-  <%= @listing.address %>
-</p>
+  <%= @listing.address %><br>
 
-<p>
+
   <strong>Description:</strong>
-  <%= @listing.description %>
-</p>
+  <%= @listing.description %><br>
 
-<p>
+
   <strong>Max Guests:</strong>
-  <%= @listing.num_guests %>
-</p>
+  <%= @listing.num_guests %><br>
 
-<p>
+
   <strong>Bedrooms:</strong>
-  <%= @listing.num_bedrooms %>
-</p>
+  <%= @listing.num_bedrooms %><br>
 
-<p>
   <strong>Bathrooms:</strong>
-  <%= @listing.num_bathrooms %>
-</p>
+  <%= @listing.num_bathrooms %><br>
 
-<p>
+
   <strong>Price:</strong>
-  <%= number_to_currency(@listing.price, unit: "RM") %>
-</p>
+  <%= number_to_currency(@listing.price, unit: "RM") %><br>
 
-<p>
+
   <strong>Availability:</strong>
-  <%= bool_to_icon(@listing.availability) %>
-</p>
+  <%= bool_to_icon(@listing.availability) %><br>
+
 
 <%= link_to 'Edit', edit_listing_path(@listing) %><br>
 <%= link_to 'Back', listings_path %>
