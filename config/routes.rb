@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/auth/facebook", as: "facebook_sign_in" 
   resources :users, only: [:show, :edit, :update, :destroy]
-  resources :listings
+  resources :listings do
+    resources :reservations
+  end
+  
   root 'welcome#index'
   
   # put specific routes at top

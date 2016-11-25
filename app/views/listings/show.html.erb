@@ -1,23 +1,20 @@
 <h1>Listed by <%= link_to @listing.user.email, user_path(@listing.user) %></h1>
 
-<%= render 'carousel' %>
+<h2><%= link_to "Make a Reservation", new_listing_reservation_path(@listing) %></h2>
 
+<%= render 'carousel' %>
 
   <strong>City:</strong>
   <%= @listing.city %><br>
 
-
   <strong>Address:</strong>
   <%= @listing.address %><br>
-
 
   <strong>Description:</strong>
   <%= @listing.description %><br>
 
-
   <strong>Max Guests:</strong>
   <%= @listing.num_guests %><br>
-
 
   <strong>Bedrooms:</strong>
   <%= @listing.num_bedrooms %><br>
@@ -25,14 +22,11 @@
   <strong>Bathrooms:</strong>
   <%= @listing.num_bathrooms %><br>
 
-
   <strong>Price:</strong>
   <%= number_to_currency(@listing.price, unit: "RM") %><br>
 
-
   <strong>Availability:</strong>
   <%= bool_to_icon(@listing.availability) %><br>
-
 
 <%= link_to 'Edit', edit_listing_path(@listing) %><br>
 <%= link_to 'Back', listings_path %>
