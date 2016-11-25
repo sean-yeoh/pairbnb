@@ -1,5 +1,6 @@
 class Listing < ActiveRecord::Base
   belongs_to :user
+  has_many :reservations, :dependent => :destroy
   validates :city, presence: true
   validates :address, presence: true
   validates :num_guests, presence: true

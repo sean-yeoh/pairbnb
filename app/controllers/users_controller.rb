@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login
-  layout "footer", except: [:new]
+  
 
   def show
     @user = User.find(params[:id])

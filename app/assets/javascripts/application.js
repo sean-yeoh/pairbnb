@@ -15,3 +15,30 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+
+$(document).on('change',function() {
+  $("#reservation_check_out_date").change(function() {
+    var checkIn = $("#reservation_check_in_date").val();
+    var checkOut = $("#reservation_check_out_date").val();
+    var price = parseFloat($("#price").text().replace("RM", ""));
+    if (checkOut > checkIn) {
+      var numNights = (Date.parse(checkOut) - Date.parse(checkIn))/(1000*60*60*24);
+      $("#num-nights").text(numNights);
+      $("#reservation_total_cost").val((price*numNights).toFixed(2));
+    }
+  });
+
+  $("#reservation_check_in_date").change(function() {
+    var checkIn = $("#reservation_check_in_date").val();
+    var checkOut = $("#reservation_check_out_date").val();
+    var price = parseFloat($("#price").text().replace("RM", ""));
+    if (checkOut > checkIn) {
+      var numNights = (Date.parse(checkOut) - Date.parse(checkIn))/(1000*60*60*24);
+      $("#num-nights").text(numNights);
+      $("#reservation_total_cost").val((price*numNights).toFixed(2));
+    }
+  });
+
+
+
+});

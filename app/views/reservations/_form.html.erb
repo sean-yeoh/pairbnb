@@ -1,0 +1,43 @@
+<% if @reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@reservation.errors.count, "error") %> prohibited
+        this reservation from being saved:
+      </h2>
+      <ul>
+        <% @reservation.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form_for [@listing, @reservation] do |f| %>
+ 
+  <p>
+    <%= f.label :check_in_date %><br>
+    <%= f.date_field :check_in_date, required: true %>
+  </p>
+  
+  <p>
+    <%= f.label :check_out_date %><br>
+    <%= f.date_field :check_out_date, required: true %>
+  </p>
+
+  <p>
+    <span id="price"><%= number_to_currency @listing.price, unit: "RM" %></span> per night
+  </p>
+
+  <strong>Number of nights:<strong><br>
+  <p id="num-nights">0</p>
+  
+  <p>
+    <%= f.label :total_cost %><br>
+    <%= f.number_field :total_cost, disabled: true %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>
