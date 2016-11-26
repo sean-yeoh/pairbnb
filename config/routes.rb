@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  get '/signup' => 'users#new', as: 'signup'
+  # post '/users' => 'users#create', as: 'users'
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/auth/facebook", as: "facebook_sign_in" 
   resources :users, only: [:show, :edit, :update, :destroy]
@@ -7,6 +8,10 @@ Rails.application.routes.draw do
     resources :reservations
   end
   
+  resources :users,
+    controller: 'users',
+    only: 'create'
+    
   root 'welcome#index'
   
   # put specific routes at top

@@ -10,11 +10,9 @@
 <body>
   
   <% if signed_in? %>
-    <%= render 'layouts/navbar' %>
+    <%= render 'layouts/navbar' unless @skip_footer %>
   <% else %>
-    <%= render 'layouts/navbar_login' %>
-      <%= link_to 'Sign up', sign_up_path %><br/>
-      <%= link_to 'Sign in', sign_in_path %><br/>
+    <%= render 'layouts/navbar_login' unless @skip_footer %>
   <% end %>
 
   <div id="flash">
@@ -25,7 +23,7 @@
 
   <%= yield %>
 
-  <%= render 'layouts/footer'%>
+  <%= render 'layouts/footer' unless @skip_footer %>
 
 </body>
 </html>

@@ -1,2 +1,88 @@
+  <!-- Trigger the modal with a link -->
+  <!-- Modal -->
+  <div class="modal fade" id="signUp" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <%= link_to facebook_sign_in_path do %>
+            <%= image_tag "fb_sign_in.png"%>
+          <% end %>
+          <p class="text-center seperator"><span>or</span></p>
+          <a href="/signup">
+            <%= image_tag "email_sign_in.png"%>
+          </a>
+        </div>
+        <div class="modal-footer">
+          <p class="pull-left">Already have an Pairbnb account?</p>
+          <a href="#signIn" data-toggle="modal" data-dismiss="modal" class="btn btn-default">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="signIn" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <%= link_to facebook_sign_in_path do %>
+            <%= image_tag "fb_log_in.png"%>
+          <% end %>
+          <p class="text-center seperator"><span>or</span></p>
+          <%= form_tag("/session", method: "post", class: "sign-in-form") do %>
+            <div class="form-group has-feedback">
+              <%= email_field(:session, :email, placeholder: " Email address", class: "form-control", 'aria-describedby': "emailIcon") %>
+              <span class="glyphicon glyphicon-envelope form-control-feedback" aria-hidden="true"></span>
+              <span id="emailIcon" class="sr-only">(email)</span>
+            </div>
+
+            <div class="form-group has-feedback">
+              <%= password_field(:session, :password, placeholder: " Password", class: "form-control", 'aria-describedby': "passwordIcon") %>
+              <span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>
+              <span id="passwordIcon" class="sr-only">(password)</span>
+            </div>
+            <div class="submit-field">
+              <%= submit_tag "Log In", class: "btn btn-danger btn-lg btn-block" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <p class="pull-left">Don't have an account?</p>
+          <a href="#signUp" data-toggle="modal" data-dismiss="modal" class="btn btn-default">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+
+<nav class="navbar navbar-default">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand navbar-left" href="/"><%= image_tag "Airbnb.png", class: "brand" %></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/sign-up" data-toggle="modal" data-target="#signUp">Sign Up</a></li>
+        <li><a href="/sign-in" data-toggle="modal" data-target="#signIn">Sign In</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<a href="/signup">sign up</a>
+<a href="/sign_in">sign in</a>
