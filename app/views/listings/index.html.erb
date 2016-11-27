@@ -2,7 +2,6 @@
 <% unless current_user.tenant? %>
   <h2><%= link_to "Create new listing", new_listing_path %></h2>
 <% end %>
-
 <div class="table-responsive container-fluid">
   <table class="table table-hover table-bordered table-condensed">
     <tr>
@@ -15,7 +14,7 @@
       <th>Price</th>
       <th>Availability</th>
       <th>Listed By</th>
-      <th colspan="3">Action</th>
+      <th>Action</th>
     </tr>
     <% @listings.each do |listing| %>
       <tr>
@@ -29,8 +28,6 @@
         <td><%= bool_to_icon(listing.availability) %></td>
         <td><%= link_to listing.user.email, user_path(listing.user) %></td>
         <td><%= link_to "Show", listing_path(listing) %></td>
-        <td><%= link_to "Edit", edit_listing_path(listing) %></td>
-        <td><%= link_to "Delete", listing_path(listing), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </table>

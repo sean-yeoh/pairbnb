@@ -16,9 +16,14 @@ class ReservationsController < ApplicationController
     reservation_params_with_detail[:listing] = @listing
     reservation_params_with_detail[:user] = current_user
     @reservation = Reservation.new(reservation_params_with_detail)
-    if @reservation.save
-      redirect_to @listing
+    if @reservation.valid_date?
+      if @reservation.save
+        redirect_to @listing
+      else
+        render 'new'
+      end
     else
+      @reservation.errors.add(:date, "is not available.")
       render 'new'
     end
   end
