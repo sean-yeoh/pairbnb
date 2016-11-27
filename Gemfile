@@ -68,3 +68,7 @@ end
 
   # Minimagick gem
   gem "mini_magick"
+
+  # fullcalendar gem for jquery fullcalendar plugin
+  gem 'fullcalendar-rails'
+  gem 'momentjs-rails'
