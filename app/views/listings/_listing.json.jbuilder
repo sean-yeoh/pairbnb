@@ -1,5 +1,3 @@
-
-
 json.array! (listing.reservations) do |reservation|
   json.extract! reservation, :id
   json.start reservation.check_in_date

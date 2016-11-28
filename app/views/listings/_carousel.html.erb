@@ -13,15 +13,15 @@
     </ol>
 
     <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox" style = 'width:500px; height:500px'>
+    <div class="carousel-inner" role="listbox">
       <% @listing.pictures.each do |picture| %>
         <% if @listing.pictures.index(picture) == 0 %>
           <div class="item active">
-            <%= image_tag(picture.url.to_s, class: "carousel-pic") %>
+            <%= image_tag(picture.resized.url.to_s, class: "carousel-pic") %>
           </div>
         <% else %>
            <div class="item">
-            <%= image_tag(picture.url.to_s, class: "carousel-pic") %>
+            <%= image_tag(picture.resized.url.to_s, class: "carousel-pic") %>
           </div>
         <% end%>
       <% end %>
