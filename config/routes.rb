@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :users,
     controller: 'users',
     only: 'create'
-    
+
   root 'welcome#index'
   
   # put specific routes at top

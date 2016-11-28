@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   has_many :reservations, :dependent => :destroy
   mount_uploader :avatar, AvatarUploader
 
+  validates :name, presence: true
+  validates :password, presence: true, length: { minimum: 8, too_short: "must be at least %{count} characters" }
+
   def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|
       u.password = (('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a).sample(rand(8..10)).join
