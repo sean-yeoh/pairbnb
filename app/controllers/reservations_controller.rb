@@ -20,7 +20,7 @@ class ReservationsController < ApplicationController
     respond_to do |format|
       if @reservation.valid_date?
         if @reservation.save
-          ReservationMailer.booking_email(@reservation.user, @listing.user, @reservation.id).deliver_now
+          ReservationJob.perform_later(@reservation.user, @listing.user, @reservation.id)
           format.html { redirect_to @listing, notice: "Reservation was successfully created." }
         else
           format.html { render action: 'new' }

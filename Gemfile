@@ -74,3 +74,6 @@ end
   gem 'momentjs-rails'
 
   gem "letter_opener", :group => :development
+
+  
+  gem 'sidekiq'

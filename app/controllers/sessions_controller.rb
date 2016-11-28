@@ -9,9 +9,8 @@ class SessionsController < Clearance::SessionsController
       else
         respond_to do |format|
           flash.notice = 'Helo World'
-          format.html { render 'welcome/index' }
-          # format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
-          # format.js { @user.errors }
+          format.html { redirect_to root_url }
+          format.js { @user }
         end
       end
     end
