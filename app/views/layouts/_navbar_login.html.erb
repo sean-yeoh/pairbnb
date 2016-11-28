@@ -28,6 +28,7 @@
             <%= image_tag "fb_log_in.png"%>
           <% end %>
           <p class="text-center seperator"><span>or</span></p>
+          <div id="errors_div"></div>
           <%= form_tag("/sessions", method: "post", id: "sign-in-form", remote: true) do %>
             <div class="form-group has-feedback">
               <%= email_field(:session, :email, placeholder: " Email address", class: "form-control", 'aria-describedby': "emailIcon") %>
@@ -43,6 +44,7 @@
             <div class="submit-field">
               <%= submit_tag "Log In", class: "btn btn-danger btn-lg btn-block" %>
             </div>
+
           <% end %>
         </div>
         <div class="modal-footer">
