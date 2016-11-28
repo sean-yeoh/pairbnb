@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     controller: 'users',
     only: 'create'
 
+  resources :sessions,
+    controller: 'sessions',
+    only: 'create'
+
   root 'welcome#index'
   
   # put specific routes at top

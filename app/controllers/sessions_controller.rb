@@ -1,5 +1,22 @@
 class SessionsController < Clearance::SessionsController
 
+  def create
+    @user = authenticate(params)
+
+    sign_in(@user) do |status|
+      if status.success?
+        redirect_back_or url_after_create
+      else
+        respond_to do |format|
+          flash.notice = 'Helo World'
+          format.html { render 'welcome/index' }
+          # format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
+          # format.js { @user.errors }
+        end
+      end
+    end
+  end
+
   def create_from_omniauth
     auth_hash = request.env["omniauth.auth"]
 

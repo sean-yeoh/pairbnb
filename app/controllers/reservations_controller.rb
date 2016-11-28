@@ -16,15 +16,19 @@ class ReservationsController < ApplicationController
     reservation_params_with_detail[:listing] = @listing
     reservation_params_with_detail[:user] = current_user
     @reservation = Reservation.new(reservation_params_with_detail)
-    if @reservation.valid_date?
-      if @reservation.save
-        redirect_to @listing
+
+    respond_to do |format|
+      if @reservation.valid_date?
+        if @reservation.save
+          ReservationMailer.booking_email(@reservation.user, @listing.user, @reservation.id).deliver_now
+          format.html { redirect_to @listing, notice: "Reservation was successfully created." }
+        else
+          format.html { render action: 'new' }
+        end
       else
-        render 'new'
+        @reservation.errors.add(:date, "is not available.")
+        format.html { render action: 'new' }
       end
-    else
-      @reservation.errors.add(:date, "is not available.")
-      render 'new'
     end
   end
 

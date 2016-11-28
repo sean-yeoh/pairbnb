@@ -1,12 +1,14 @@
 <div id="clearance" class="sign-up">
   <%= form_for @user do |form| %>
-    <div class="form-group has-feedback">
-      <%= form.text_field :name, placeholder: " Name", class: "form-control", 'aria-describedby': "nameIcon"%>
-      <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
-      <span id="nameIcon" class="sr-only">(name)</span>
-    </div>
+  
     <%= render partial: '/users/form', object: form %>
 
+    <div class="form-group has-feedback">
+      <%= form.password_field :password, placeholder: " Password", class: "form-control", 'aria-describedby': "passwordIcon"%>
+      <span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>
+      <span id="passwordIcon" class="sr-only">(password)</span>
+    </div>
+    
     <div class="submit-field">
       <%= form.submit "Sign Up", class: "btn btn-primary btn-lg btn-block" %>
     </div>
