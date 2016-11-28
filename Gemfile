@@ -72,3 +72,5 @@ end
   # fullcalendar gem for jquery fullcalendar plugin
   gem 'fullcalendar-rails'
   gem 'momentjs-rails'
+
+  gem "letter_opener", :group => :development

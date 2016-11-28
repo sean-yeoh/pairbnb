@@ -11,6 +11,7 @@
   <% @listing.reservations.each do |reservation| %>
     <p>This listing is reserved from <%= reservation.check_in_date %> to <%= reservation.check_out_date %> for nights.</p>
     <p><%= link_to 'Show', [@listing, reservation] %></p>
+    <p><%= link_to 'Show', listing_reservation_path(@listing, reservation) %></p>
   <% end %>
 
   <strong>Title:</strong>

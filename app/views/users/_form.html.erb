@@ -1,11 +1,12 @@
 <div class="form-group has-feedback">
+      <%= form.text_field :name, placeholder: " Name", class: "form-control", 'aria-describedby': "nameIcon"%>
+      <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
+      <span id="nameIcon" class="sr-only">(name)</span>
+    </div>
+
+<div class="form-group has-feedback">
   <%= form.text_field :email, type: 'email', placeholder: " Email address", class: "form-control", 'aria-describedby': "emailIcon"%>
   <span class="glyphicon glyphicon-envelope form-control-feedback" aria-hidden="true"></span>
   <span id="emailIcon" class="sr-only">(email)</span>
 </div>
 
-<div class="form-group has-feedback">
-  <%= form.password_field :password, placeholder: " Password", class: "form-control", 'aria-describedby': "passwordIcon"%>
-  <span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>
-  <span id="passwordIcon" class="sr-only">(password)</span>
-</div>

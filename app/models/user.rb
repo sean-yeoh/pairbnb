@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   validates :name, presence: true
-  validates :password, presence: true, length: { minimum: 8, too_short: "must be at least %{count} characters" }
+  validates :password, presence: true, length: { minimum: 8, too_short: "must be at least %{count} characters" }, on: :create
 
   def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|
