@@ -1,1 +1,10 @@
-console.log('user = <%= @user %>');
+<% unless @user %>
+  $("#error-text").remove();
+  $("#error_div").append("<p id='error-text' class='text-danger'><%= j @notice %></p>").hide().fadeIn(100);
+  $("#session_email").click(function() {
+    $("#error-text").remove();
+  });
+  $("#session_password").click(function() {
+    $("#error-text").remove();
+  });
+<% end %>
