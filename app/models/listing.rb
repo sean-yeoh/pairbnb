@@ -8,4 +8,8 @@ class Listing < ActiveRecord::Base
   validates :num_bathrooms, presence: true
   validates :price, presence: true
   mount_uploaders :pictures, PicturesUploader
+
+  scope :num_bedrooms, -> (num_bedrooms) { where num_bedrooms: num_bedrooms }
+  scope :city, -> (city) { where city: city }
+  
 end

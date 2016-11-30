@@ -77,3 +77,5 @@ end
 
   
   gem 'sidekiq'
+
+  gem 'braintree'

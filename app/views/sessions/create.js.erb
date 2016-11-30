@@ -7,4 +7,9 @@
   $("#session_password").click(function() {
     $("#error-text").remove();
   });
+  $("#signIn").on('hidden.bs.modal', function () {
+    $("#error-text").remove();
+    $("#session_email").val('');
+    $("#session_password").val('');
+  });
 <% end %>
