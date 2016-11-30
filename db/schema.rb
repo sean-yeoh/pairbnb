@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161127102653) do
+ActiveRecord::Schema.define(version: 20161129085525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,14 +41,22 @@ ActiveRecord::Schema.define(version: 20161127102653) do
     t.string   "title"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.string   "braintree_transaction_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "listing_id"
     t.date     "check_in_date"
     t.date     "check_out_date"
     t.decimal  "total_cost"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "payment_id"
+    t.boolean  "status",         default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,5 +76,6 @@ ActiveRecord::Schema.define(version: 20161127102653) do
 
   add_foreign_key "listings", "users"
   add_foreign_key "reservations", "listings"
+  add_foreign_key "reservations", "payments"
   add_foreign_key "reservations", "users"
 end
