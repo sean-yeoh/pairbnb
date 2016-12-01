@@ -73,4 +73,8 @@ $(document).on("turbolinks:load", function() {
   $('#calendar').fullCalendar({
     events: window.location.pathname + '.json'
   });
+
+  $('.home-page-carousel').carousel({
+        interval: 1500 //changes the speed
+    })
 });

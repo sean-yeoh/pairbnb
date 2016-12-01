@@ -1,8 +1,32 @@
 class ListingsController < ApplicationController
   before_action :require_login
 
+  def home_search
+    @listings = Listing.where(nil)
+    home_search_params(params).each do |key, value|
+      @listings = @listings.key if value.present?
+    end
+  end 
+
+  def search
+    @listings = Listing.paginate(:page => params[:page], :per_page => 6).where(nil)
+    search_params(params).each do |key, value|
+      @listings = @listings.public_send(key, value) if value.present?
+    end
+
+
+    @cities = Listing.uniq.pluck(:city)
+
+    if @listings.empty?
+      @notice = "No record found. Please search again."
+    end
+    render template: 'listings/index'
+
+  end 
+
   def index
-    @listings = Listing.paginate(:page => params[:page], :per_page => 30)
+    @listings = Listing.paginate(:page => params[:page], :per_page => 6)
+    @cities = Listing.uniq.pluck(:city)
   end
 
   def new
@@ -61,5 +85,9 @@ class ListingsController < ApplicationController
   private
   def listing_params
     params.require(:listing).permit(:title, :city, :address, :description, :num_guests, :num_bedrooms, :num_bathrooms, :price, :availability, {pictures: []})
+  end
+
+  def search_params(params)
+    params.slice(:city, :num_guests, :check_in_date, :check_out_date, :min_price, :max_price, :num_bathrooms, :num_bedrooms, :search_by_city_and_address)
   end
 end
