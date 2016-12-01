@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/auth/facebook", as: "facebook_sign_in" 
   
   resources :users, only: [:show, :edit, :update, :destroy]
+  
   resources :listings do
     resources :reservations do
       resources :payments, only: [:new, :show, :create]
