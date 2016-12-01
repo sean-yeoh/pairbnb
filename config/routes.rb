@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   get '/signup' => 'users#new', as: 'signup'
+  get '/search' => 'listings#search'
+  post '/home_search' => 'listings#home_search'
   # post '/users' => 'users#create', as: 'users'
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/auth/facebook", as: "facebook_sign_in" 
+  
   resources :users, only: [:show, :edit, :update, :destroy]
   resources :listings do
     resources :reservations do
@@ -10,6 +13,8 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :searches
+
   resources :users,
     controller: 'users',
     only: 'create'

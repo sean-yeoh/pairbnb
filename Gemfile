@@ -79,3 +79,5 @@ end
   gem 'sidekiq'
 
   gem 'braintree'
+
+  gem 'pg_search'

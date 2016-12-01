@@ -36,27 +36,88 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-12">
-      <h1>All Listings</h1>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-4 fixed">
-      Search form
+      <h1>Search</h1>
+      <%= form_tag("/search", method: "get") do %>
+        <div class="form-group">
+           <%= label_tag :city %>
+            <input list="city" name="city" class="form-control">
+              <datalist id="city">
+                <%= options_for_select(@cities) %>
+              </datalist>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag :check_in_date %>
+          <%= date_field_tag :check_in_date, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag :check_out_date %>
+          <%= date_field_tag :check_out_date, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag :num_guests %>
+          <%= select_tag :num_guests, options_for_select(1..16), class: 'form-control', include_blank: true %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag :num_bedrooms %>
+          <%= select_tag :num_bedrooms, options_for_select(1..16), class: 'form-control', include_blank: true %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag :num_bathrooms %>
+          <%= select_tag :num_bathrooms, options_for_select(0..8), class: 'form-control', include_blank: true %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag :min_price, "Min Price / Night" %>
+          <div class="input-group">
+            <div class="input-group-addon">RM</div>
+            <%= number_field_tag :min_price, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag :max_price, "Max Price / Night" %>
+          <div class="input-group">
+            <div class="input-group-addon">RM</div>
+            <%= number_field_tag :max_price, class: 'form-control' %>
+          </div>
+        </div>
+
+          <%= submit_tag "Search", class: "btn btn-info btn-lg" %>
+      <% end %>
     </div>
 
     <div class="col-md-8">
+    <% if @notice %>
+      <h1 class="text-center" style="margin-top:200px"><%= @notice %></h1>
+    <% end %>
       <div class="row">
         <% @listings.each do |listing| %>
-          <div class="col-md-6 img-responsive">
-          <%= image_tag(listing.pictures.first.url, width: "500", height: "400") %>
+          <div class="col-md-6 img-responsive listing-page">
+          <% if listing.pictures.empty? %>
+            <%= link_to listing_path(listing) do %>     
+              <%= image_tag("https://placeholdit.imgix.net/~text?txtsize=56&txt=600%C3%97450&w=600&h=450") %>
+            <% end %>
+          <% else %>
+            <%= link_to listing_path(listing) do %> 
+              <%= image_tag(listing.pictures.first.resized.url, class: 'img-responsive') %>
+            <% end %>
+          <% end %>
+          <p><strong><%= number_to_currency(listing.price, unit: "RM") %></strong> / night<br>
+          <%= listing.city%> - <%= pluralize(listing.num_bedrooms, "bedroom") %> - <%= pluralize(listing.num_guests, "guest") %> </p>
         </div>
       <% end %>
       </div>
+      <%= will_paginate @listings, renderer: BootstrapPagination::Rails %>
     </div>
   </div> 
 </div>
-
-
-
-<%= will_paginate @listings, renderer: BootstrapPagination::Rails %>
