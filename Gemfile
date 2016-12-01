@@ -63,12 +63,7 @@ end
   gem 'will_paginate', '~> 3.1.0'
   gem 'will_paginate-bootstrap'
 
-  # Use carrierwave gem to upload files to Ruby applications
-  gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
-
-  # Minimagick gem
-  gem "mini_magick"
-
+ 
   # fullcalendar gem for jquery fullcalendar plugin
   gem 'fullcalendar-rails'
   gem 'momentjs-rails'
@@ -83,4 +78,9 @@ end
   gem 'pg_search'
 
   # for amazon cloud uploading
+
+
+  gem "mini_magick"
+
   gem 'fog'
+  gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'

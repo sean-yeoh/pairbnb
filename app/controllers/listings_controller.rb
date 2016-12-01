@@ -13,8 +13,7 @@ class ListingsController < ApplicationController
     search_params(params).each do |key, value|
       @listings = @listings.public_send(key, value) if value.present?
     end
-
-
+    
     @cities = Listing.uniq.pluck(:city)
 
     if @listings.empty?

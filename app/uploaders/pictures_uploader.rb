@@ -1,3 +1,6 @@
+require 'carrierwave/storage/abstract'
+require 'carrierwave/storage/file'
+require 'carrierwave/storage/fog'
 class PicturesUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
