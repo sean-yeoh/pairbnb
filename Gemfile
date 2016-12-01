@@ -84,3 +84,7 @@ end
 
   gem 'fog'
   gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
+  gem 'rails_12factor', group: :production
+
+  gem 'unicorn'
