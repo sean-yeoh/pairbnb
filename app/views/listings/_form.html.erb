@@ -1,74 +1,80 @@
-<%= form_for @listing do |f| %>
- 
-  <% if @listing.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@listing.errors.count, "error") %> prohibited
-        this listing from being saved:
-      </h2>
-      <ul>
-        <% @listing.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+
+  <%= form_for @listing, html: {class: 'form-horizontal'} do |f| %>
+
+    <% if @listing.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@listing.errors.count, "error") %> prohibited
+          this listing from being saved:
+        </h2>
+        <ul>
+          <% @listing.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+   
+    <div class="form-group">
+      <%= f.label :title, class: 'control-label col-md-2' %>
+      <div class="col-md-10">
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+   </div>
+
+    <div class="form-group">
+      <%= f.label :city, class: 'control-label col-md-2' %>
+      <div class="col-md-10">
+        <%= f.text_field :city, class: 'form-control' %>
+      </div>
     </div>
+   
+    <div class="form-group">
+      <%= f.label :address, class: 'control-label col-md-2' %>
+      <div class="col-md-10">
+        <%= f.text_area :address, class: 'form-control' %>
+      </div>
+    </div>
+   
+    <div class="form-group">
+      <%= f.label :description, class: 'control-label col-md-2' %>
+      <div class="col-md-10">
+        <%= f.text_area :description, size: "80x4", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group form-inline">
+      <%= f.label :Max_guests, class: 'control-label col-md-2' %>
+      <%= f.select :num_guests, options_for_select(1..16), {}, {class: 'form-control col-md-1'} %>
+
+      <%= f.label "Bedrooms", class: 'control-label col-md-2' %>
+      <%= f.select :num_bedrooms, options_for_select(1..16), {}, {class: 'form-control col-md-1'} %>
+     
+      <%= f.label :Bathrooms , class: 'control-label col-md-2'%>
+      <%= f.select :num_guests, options_for_select(1..8), {}, {class: 'form-control col-md-1'} %>
+
+      <%= f.label "Price / Night", class: 'control-label col-md-2' %>
+      <%= f.number_field :price, class: 'form-control col-md-1', min: 0 %>
+    </div>
+
+    <div class="form-group col-md-offset-2 col-md-10">
+      <%= f.label(:availability) %>
+      <%= f.radio_button(:availability, true) %>
+      <%= f.label(:availability_true, "✓") %>
+      <%= f.radio_button(:availability, false) %>
+      <%= f.label(:availability_false, "❌") %>
+    </div>
+
+    <div class="form-group">
+    <% @listing.pictures.each do |picture| %>
+      <%= image_tag(picture.url.to_s) %>
+    <% end %>
+    <%= f.file_field :pictures, multiple: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit %>
+    </div>
+   
   <% end %>
- 
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
-
-  <p>
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
-  </p>
- 
-  <p>
-    <%= f.label :address %><br>
-    <%= f.text_area :address %>
-  </p>
- 
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description, size: "80x8" %>
-  </p>
-
-  <p>
-    <%= f.label :Max_guests %><br>
-    <%= f.number_field :num_guests, in: 1..16 %>
-  </p>
-
-  <p>
-    <%= f.label "Bedrooms" %><br>
-    <%= f.number_field :num_bedrooms, in: 1..16 %>
-  </p>
-
-  <p>
-    <%= f.label :Bathrooms %><br>
-    <%= f.number_field :num_bathrooms, in: 0..8 %>
-  </p>
-
-  <p>
-    <%= f.label :price %><br>
-    <%= f.number_field :price %>
-  </p>
-
-  <p>
-    <%= f.label(:availability) %><br>
-    <%= f.radio_button(:availability, true) %>
-    <%= f.label(:availability_true, "✓") %>
-    <%= f.radio_button(:availability, false) %>
-    <%= f.label(:availability_false, "❌") %>
-  </p>
-
-  <% @listing.pictures.each do |picture| %>
-    <%= image_tag(picture.url.to_s) %>
-  <% end %>
-  <%= f.file_field :pictures, multiple: true %>
-
-  <p>
-    <%= f.submit %>
-  </p>
- 
-<% end %>
+  
