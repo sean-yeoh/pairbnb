@@ -81,3 +81,6 @@ end
   gem 'braintree'
 
   gem 'pg_search'
+
+  # for amazon cloud uploading
+  gem 'fog'
