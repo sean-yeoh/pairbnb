@@ -1,27 +1,33 @@
-<%= form_for @user, :html => {:multipart => true} do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+    <%= form_for @user, :html => {:multipart => true} do |f| %>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control' %>
+      </div>
 
-  <p>
-    <% if @user.avatar.file.nil? %>
-      <%= f.file_field :avatar %>
-    <% else %>
-      <%= image_tag(@user.avatar.thumb.url, alt: "#{@user.email}'s Avatar") %><br>
-      <label>
-        <%= f.check_box :remove_avatar %>
-        Remove avatar
-      </label>
-    <%= f.file_field :avatar %>
+      <div class="form-group">
+        <% if @user.avatar.file.nil? %>
+          <%= f.file_field :avatar %>
+        <% else %>
+          <%= image_tag(@user.avatar.thumb.url, alt: "#{@user.name}'s Avatar", class: 'img-responsive') %><br>
+          <label>
+            <%= f.check_box :remove_avatar %>
+            Remove avatar
+          </label>
+        <%= f.file_field :avatar, class: 'form-group' %>
+        <% end %>
+      </div>
+
+      <p><%= f.submit class: 'btn btn-warning' %></p>
     <% end %>
-  </p>
-
-  <p><%= f.submit %></p>
-<% end %>
+    </div>
+  </div>
+</div>

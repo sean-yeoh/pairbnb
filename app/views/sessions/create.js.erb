@@ -1,10 +1,10 @@
 <% unless @user %>
   $("#error-text").remove();
   $("#error_div").append("<p id='error-text' class='text-danger'><%= j @notice %></p>").hide().fadeIn(100);
-  $("#session_email").click(function() {
+  $("#session_email").focus(function() {
     $("#error-text").remove();
   });
-  $("#session_password").click(function() {
+  $("#session_password").focus(function() {
     $("#error-text").remove();
   });
   $("#signIn").on('hidden.bs.modal', function () {

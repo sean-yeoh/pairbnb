@@ -1,5 +1,12 @@
 class ListingsController < ApplicationController
-  before_action :require_login
+  before_action :requirelogin
+
+  def requirelogin
+    if current_user.nil?
+      flash[:danger] = "Please sign in to continue."
+      redirect_to(root_path)
+    end  
+  end
 
   def home_search
     @listings = Listing.where(nil)

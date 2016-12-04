@@ -17,7 +17,6 @@
 //= require bootstrap-sprockets
 //= require moment 
 //= require fullcalendar
-
 //= require kartik-v-bootstrap/fileinput
 //= require kartik-v-bootstrap/fileinput.min
 //= require kartik-v-bootstrap/plugins/canvas-to-blob

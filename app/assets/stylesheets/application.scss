@@ -18,6 +18,7 @@
 @import "kartik-v-bootstrap/fileinput.min.css";
 @import "kartik-v-bootstrap/fileinput";
 @import "kartik-v-bootstrap/fileinput.min";
+@import "font-awesome";
 
 .brand { 
     max-height: 30px;
@@ -25,52 +26,53 @@
     overflow: visible;
     padding-top: -10px;
     padding-bottom: 0; 
-    margin-top: -7px;
+    margin-top: -1px;
 }
 
 .navbar {
-  height: 50px;
-  .dropdown-toggle {
-  height: 50px;
+  min-height: 65px;
+  .navbar-form {
+    margin-top: +13px;
   }
-  .dropdown {
-  height: 50px;
+  .role {
+   line-height: 50px;
+   margin-top: 4px;
+  }
+  .become-a-host {
+    margin-top: 4px;
+  }
+  .navbar-avatar {
+    width:30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-top: -1px;
   }
 }
 
-.navbar-avatar {
-  width:30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-top: -7px;
+.signin_signup {
+  margin-top: 5px;
 }
 
-.role {
-  line-height: 50px;
+.navbar-collapse {
+  overflow: hidden;
+  max-height: none !important;
+  height: auto !important;
 }
 
-
-#footer {
-  clear: both;
-  position: relative;
-  z-index: 10;
-  height: 3em;
-  margin-top: -3em;
-  background-color: black;
-  color: white;
-  padding: 10px;
-  margin: auto;
-  ul {
-    li {
-      float: left;
-      margin-right: 20px;
-      list-style: none;
-      display: inline;
+#signIn {
+  .seperator {
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 10px 0px 20px 18px;
+    width: 382px;
+    span {
+    background-color: #fff;
+    padding: 0 10px;
     }
   }
 }
 
-#signIn {
+#signUpEmail {
   .seperator {
     border-bottom: 1px solid #000;
     line-height: 0.1em;
@@ -102,6 +104,7 @@
     margin: 10px 0px 0px 18px;
   }
 }
+
 .modal-dialog {
   width: 450px;
 }
@@ -149,11 +152,13 @@ body {
     height: 100%;
 }
 
-body { padding-top: 70px; }
+body { 
+  padding-top: 70px;
+}
 
 .home-page-carousel {
     height: 75%;
-    margin-top: -20px;
+    margin-top: -10px;
 }
 
 .home-page-item,
@@ -172,18 +177,43 @@ body { padding-top: 70px; }
     -o-background-size: cover;
 }
 
-footer {
-    margin: 50px 0;
-}
-
 .carousel-caption {
   top: 40%;
   bottom: auto;
   font-family: 'Roboto', sans-serif;
-
 }
 
 .home-page-form {
   margin-top: 30px;
   margin-bottom: 30px;
 }
+
+.social:hover {
+     -webkit-transform: scale(1.1);
+     -moz-transform: scale(1.1);
+     -o-transform: scale(1.1);
+ }
+ .social {
+ -webkit-transform: scale(0.8);
+ /* Browser Variations: */
+ 
+ -moz-transform: scale(0.8);
+ -o-transform: scale(0.8);
+ -webkit-transition-duration: 0.5s;
+ -moz-transition-duration: 0.5s;
+ -o-transition-duration: 0.5s;
+ }
+
+ #social-fb:hover {
+     color: #3B5998;
+ }
+ #social-tw:hover {
+     color: #4099FF;
+ }
+ #social-gp:hover {
+     color: #d34836;
+ }
+ #social-em:hover {
+     color: #f39c12;
+ }
+

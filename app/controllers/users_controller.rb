@@ -6,14 +6,21 @@ class UsersController < Clearance::UsersController
     render template: "users/new"
   end
 
+  def listings
+    
+  end
+
   def create
     @user = user_from_params
 
-    if @user.save
-      sign_in @user
-      redirect_back_or url_after_create
-    else
-      render template: "users/new"
+    respond_to do |format|
+      if @user.save
+        sign_in @user
+        format.js { redirect_back_or url_after_create }
+      else
+        format.html { render template: "users/new" }
+        format.js
+      end
     end
   end
 

@@ -1,14 +1,29 @@
-<h1>This is <%= @user.email %>'s profile.</h1>
-<% if @user == current_user || current_user.superadmin? %>
-  <%= link_to "Edit Profile", edit_user_path %><br>
-<% end %>
-<% if @user.avatar.file.nil? %>
-  <%= form_for @user do |f| %>
-    <%= f.file_field :avatar %>
-    <%= f.submit "Upload" %>
-  <% end %>
-<% else %>
-  <%= image_tag(@user.avatar.thumb.url.to_s, alt: "#{@user.email}'s Avatar") %><br>
-<% end %>
+<div class="container">
+  <div class="row" style="background-color: #d9d9d9">
+    <div class="col-md-4">
+      <% if @user.avatar.file.nil? %>
+        <%= form_for @user do |f| %>
+          <%= image_tag("avatar_placeholder.png", size: '200x200')%>
+          <%= f.file_field :avatar %>
+          <%= f.submit "Upload" %>
+        <% end %>
+      <% else %>
+        <%= image_tag(@user.avatar.thumb.url.to_s, alt: "#{@user.name}'s Avatar", class: 'img-responsive') %><br>
+      <% end %>
+    </div>
 
-
+    <div class="col-md-8">
+      <h2><%= @user.name %></h2>
+       <% if @user == current_user || current_user.superadmin? %>
+        <p><%= link_to "Edit Profile", edit_user_path %></p>
+      <% end %>
+      <p><span class="glyphicon glyphicon-envelope"></span> <%= @user.email%></p>
+      <p><%= @user.created_at.strftime("Joined on %b %Y") %></p>
+      <% if @user == current_user %>
+        <p><%= link_to 'View Your Listings', user_listings_path(@user) %></p>
+      <% else %>
+        <p><%= link_to 'View Their Listings', user_listings_path(@user) %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

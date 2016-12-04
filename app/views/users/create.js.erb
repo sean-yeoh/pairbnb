@@ -1,0 +1,36 @@
+<% unless @user.valid? %>
+  $('.error-text').remove();
+  <% if !@user.errors.messages[:email].nil? %>
+    <% @user.errors.messages[:email].each do |msg| %>
+      $('.email-div').append("<p class='error-text text-danger email-error'>Email <%= j msg %></p>").hide().fadeIn(100);
+    <% end %>
+  <% end %>
+
+  <% if !@user.errors.messages[:name].nil? %>
+    <% @user.errors.messages[:name].each do |msg| %>
+      $('.name-div').append("<p class='error-text text-danger name-error'>Name <%= j msg %></p>").hide().fadeIn(100);
+    <% end %>
+  <% end %>
+
+  <% if !@user.errors.messages[:password].nil? %>
+    <% @user.errors.messages[:password].each do |msg| %>
+      $('.password-div').append("<p class='error-text text-danger pw-error'>Password <%= j msg %></p>").hide().fadeIn(100);
+    <% end %>
+  <% end %>
+
+  $('#user_name').focus(function() {
+    $('.name-error').remove();
+  });
+
+  $('#user_email').focus(function() {
+    $('.email-error').remove();
+  });
+
+  $('#user_password').focus(function() {
+    $('.pw-error').remove();
+  });
+
+  $("#signUpEmail").on('hidden.bs.modal', function () {
+    $(".error-text").remove();
+  });
+<% end %>
