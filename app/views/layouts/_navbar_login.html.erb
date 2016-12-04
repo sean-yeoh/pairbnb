@@ -5,11 +5,11 @@
       <div class="modal-content">
         <div class="modal-body text-center">
           <%= link_to facebook_sign_in_path do %>
-            <%= image_tag "fb_sign_in.png"%>
+            <%= image_tag "fb_sign_in.png", class: 'img-responsive' %>
           <% end %>
           <p class="text-center seperator"><span>or</span></p>
           <a href="#signUpEmail" data-toggle="modal" data-dismiss="modal">
-            <%= image_tag "email_sign_in.png"%>
+            <%= image_tag "email_sign_in.png", class: 'img-responsive' %>
           </a>
         </div>
         <div class="modal-footer">
@@ -64,7 +64,7 @@
       <div class="modal-content">
         <div class="modal-body text-center">
           <%= link_to facebook_sign_in_path do %>
-            <%= image_tag "fb_log_in.png"%>
+            <%= image_tag "fb_log_in.png", class: 'img-responsive'%>
           <% end %>
           <p class="text-center seperator"><span>or</span></p>
           <div id="error_div"></div>

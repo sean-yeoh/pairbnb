@@ -138,6 +138,21 @@
   }
 }
 
+@media screen and (max-width: 500px) {
+  .modal-dialog {
+      width: 80%;
+      height: 80%;
+      padding: 0;
+      margin:0;
+}
+.modal-content {    
+      height: 100%;
+      border-radius: 0;
+      color:white;
+      overflow:auto;
+}
+}
+
 .sign-in-form {
   width:384px;
   margin-left: 18px;
