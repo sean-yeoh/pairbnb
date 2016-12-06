@@ -1,5 +1,3 @@
-
-
 <div class="table-responsive container">
   <table class="table table-hover table-bordered table-condensed">
     <tr>
@@ -24,7 +22,7 @@
         <td><%= listing.num_bathrooms %></td>
         <td><%= number_to_currency(listing.price, unit: "RM") %></td>
         <td><%= bool_to_icon(listing.availability) %></td>
-        <td><%= link_to listing.user.email, user_path(listing.user) %></td>
+        <td><%= link_to listing.user_email, user_path(listing.user) %></td>
         <td><%= link_to "Show", listing_path(listing) %></td>
       </tr>
     <% end %>
@@ -121,11 +119,11 @@
         <% @listings.each do |listing| %>
           <div class="col-md-6 img-responsive listing-page">
           <% if listing.pictures.empty? %>
-            <%= link_to listing_path(listing) do %>     
+            <%= link_to listing_path(listing) do %>
               <%= image_tag("https://placeholdit.imgix.net/~text?txtsize=56&txt=600%C3%97450&w=600&h=450", class: 'img-responsive') %>
             <% end %>
           <% else %>
-            <%= link_to listing_path(listing) do %> 
+            <%= link_to listing_path(listing) do %>
               <%= image_tag(listing.pictures.first.resized.url, class: 'img-responsive') %>
             <% end %>
           <% end %>
@@ -136,5 +134,5 @@
       </div>
       <%= will_paginate @listings, renderer: BootstrapPagination::Rails %>
     </div>
-  </div> 
+  </div>
 </div>

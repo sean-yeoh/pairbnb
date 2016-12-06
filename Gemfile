@@ -65,14 +65,14 @@ end
   gem 'will_paginate', '~> 3.1.0'
   gem 'will_paginate-bootstrap'
 
- 
+
   # fullcalendar gem for jquery fullcalendar plugin
   gem 'fullcalendar-rails'
   gem 'momentjs-rails'
 
   gem "letter_opener", :group => :development
 
-  
+
   gem 'sidekiq'
 
   gem 'braintree'
@@ -90,3 +90,15 @@ end
   gem 'rails_12factor', group: :production
 
   gem 'unicorn'
+
+  group :development, :test do
+    gem 'rspec-rails', '~> 3.5'
+  end
+
+  group :development, :test do
+    gem 'shoulda-matchers', '~> 3.1'
+  end
+
+  gem "rails_best_practices"
+
+  gem 'simplecov', :require => false, :group => :test

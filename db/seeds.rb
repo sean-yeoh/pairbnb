@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# 10.times do 
+# 10.times do
 #   User.create(
 #     email: FFaker::Internet.email,
 #     password: "12345678",
@@ -14,7 +14,7 @@
 #   )
 # end
 
-# 100.times do 
+# 100.times do
 #   Listing.create(
 #     user: User.all.sample,
 #     city: FFaker::Address.city,

@@ -3,7 +3,7 @@
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <% @listing.pictures.each_index do |index| %>
+      <% listing.pictures.each_index do |index| %>
         <% if index == 0 %>
           <li data-target="#myCarousel" data-slide-to="<%= index %>" class="active"></li>
         <% else %>
@@ -14,8 +14,8 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-      <% @listing.pictures.each do |picture| %>
-        <% if @listing.pictures.index(picture) == 0 %>
+      <% listing.pictures.each do |picture| %>
+        <% if listing.pictures.index(picture) == 0 %>
           <div class="item active">
             <%= image_tag(picture.resized.url.to_s, class: "carousel-pic") %>
           </div>

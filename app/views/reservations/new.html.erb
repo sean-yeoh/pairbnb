@@ -1,5 +1,5 @@
 <h1>New Reservation</h1>
 
-<%= render 'form' %>
+<%= render 'form', :reservation => @reservation, :listing => @listing %>
 
 <%= link_to 'Back', @listing %>

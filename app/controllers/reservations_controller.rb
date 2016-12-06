@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :require_login
-  
+
   def show
   end
 
@@ -19,21 +19,18 @@ class ReservationsController < ApplicationController
     reservation_params_with_detail[:user] = current_user
     @reservation = Reservation.new(reservation_params_with_detail)
 
- 
-      if @reservation.valid_date?
-        if @reservation.save
-          # Run "redis-server" then "bundle exec sidekiq" then "rails s" in this order.
-          ReservationJob.perform_later(@reservation.user, @listing.user, @reservation.id)
-          redirect_to new_listing_reservation_payment_url(@listing, @reservation)
-
-        else
-          render action: 'new'
-        end
+    if @reservation.valid_date?
+      if @reservation.save
+        # Run "redis-server" then "bundle exec sidekiq" then "rails s" in this order.
+        ReservationJob.perform_later(@reservation.user, @listing.user, @reservation.id)
+        redirect_to new_listing_reservation_payment_url(@listing, @reservation)
       else
-        @reservation.errors.add(:date, "is not available.")
-        render action: 'new'
+        render 'new'
       end
-
+    else
+      @reservation.errors.add(:date, "is not available.")
+      render 'new'
+    end
   end
 
   def edit

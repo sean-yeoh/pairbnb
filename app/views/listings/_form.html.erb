@@ -1,17 +1,14 @@
 
-<%= form_for @listing, html: {class: 'form-horizontal'} do |f| %>
+<%= form_for listing, html: {class: 'form-horizontal'} do |f| %>
 
-  <% if @listing.errors.any? %>
+  <% if listing.errors.any? %>
     <div id="error_explanation">
       <p class="alert alert-danger">
-        <%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:
-      </p>
-      <p class="alert alert-danger">
-        <%= @listing.errors.full_messages.sort.join(', ') %>
+        <%= listing.errors.full_messages.sort.join(', ') %>
       </p>
     </div>
   <% end %>
- 
+
   <div class="form-group">
     <%= f.label :title, class: 'control-label col-md-2' %>
     <div class="col-md-10">
@@ -25,14 +22,14 @@
       <%= f.text_field :city, class: 'form-control' %>
     </div>
   </div>
- 
+
   <div class="form-group">
     <%= f.label :address, class: 'control-label col-md-2' %>
     <div class="col-md-10">
       <%= f.text_area :address, class: 'form-control' %>
     </div>
   </div>
- 
+
   <div class="form-group">
     <%= f.label :description, class: 'control-label col-md-2' %>
     <div class="col-md-10">
@@ -46,7 +43,7 @@
 
     <%= f.label :num_bedrooms, "Bedrooms", class: 'control-label col-lg-2 col-md-4 col-sm-3' %>
     <%= f.select :num_bedrooms, options_for_select(1..16), {}, {class: 'form-control col-lg-2 col-md-4 col-sm-3'} %>
-   
+
     <%= f.label :num_bathrooms, "Bathrooms" , class: 'control-label col-lg-2 col-md-4 col-sm-3'%>
     <%= f.select :num_bathrooms, options_for_select(1..8), {}, {class: 'form-control col-lg-2 col-md-4 col-sm-3'} %>
 
@@ -63,7 +60,7 @@
     <%= f.label(:availability_false, "❌") %>
   </div> -->
 
-  <% @listing.pictures.each do |picture| %>
+  <% listing.pictures.each do |picture| %>
     <%= image_tag(picture.url.to_s) %>
   <% end %>
 
@@ -73,7 +70,7 @@
 
   <div class="row">
     <%= link_to 'Back', listings_path, class: 'col-md-2 btn btn-default' %>
-    
+
     <%= f.submit class: "btn btn-danger col-md-offset-8 col-md-2" %>
  </div>
 <% end %>

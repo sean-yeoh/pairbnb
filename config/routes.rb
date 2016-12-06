@@ -4,20 +4,20 @@ Rails.application.routes.draw do
   post '/home_search' => 'listings#home_search'
   # post '/users' => 'users#create', as: 'users'
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
-  get "/auth/facebook", as: "facebook_sign_in" 
-  
+  get "/auth/facebook", as: "facebook_sign_in"
+
   get '/users/:user_id/listings', to: 'users#listings', as: 'user_listings'
 
   delete "/signout" => "sessions#destroy"
 
-  resources :users, only: [:show, :edit, :update, :destroy]
-  
+  resources :users, only: [:show, :edit, :update]
+
   resources :listings do
     resources :reservations do
       resources :payments, only: [:new, :show, :create]
     end
   end
-  
+
   resources :searches
 
   resources :users,
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     only: 'create'
 
   root 'welcome#index'
-  
+
   # put specific routes at top
   # put general routes at bottom
   # put root route last

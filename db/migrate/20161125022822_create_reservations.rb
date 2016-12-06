@@ -6,7 +6,7 @@ class CreateReservations < ActiveRecord::Migration
       t.date :check_in_date
       t.date :check_out_date
       t.decimal :total_cost
-      
+
       t.timestamps null: false
     end
   end

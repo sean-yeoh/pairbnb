@@ -5,30 +5,23 @@ class ListingsController < ApplicationController
     if current_user.nil?
       flash[:danger] = "Please sign in to continue."
       redirect_to(root_path)
-    end  
-  end
-
-  def home_search
-    @listings = Listing.where(nil)
-    home_search_params(params).each do |key, value|
-      @listings = @listings.key if value.present?
     end
-  end 
+  end
 
   def search
     @listings = Listing.paginate(:page => params[:page], :per_page => 6).where(nil)
     search_params(params).each do |key, value|
       @listings = @listings.public_send(key, value) if value.present?
     end
-    
+
     @cities = Listing.uniq.pluck(:city)
 
     if @listings.empty?
       @notice = "No record found. Please search again."
     end
-    render template: 'listings/index'
+    render 'listings/index'
 
-  end 
+  end
 
   def index
     @listings = Listing.paginate(:page => params[:page], :per_page => 6)
@@ -63,7 +56,7 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     unless (current_user.superadmin? || current_user == @listing.user) && !current_user.tenant?
       flash[:danger] = "Sorry. You can't edit this listing."
-      redirect_to :back
+      redirect_to @listing
     end
   end
 
@@ -72,7 +65,7 @@ class ListingsController < ApplicationController
 
     if @listing.update(listing_params)
       redirect_to @listing
-    else 
+    else
       render 'edit'
     end
   end
@@ -81,7 +74,7 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     unless (current_user.superadmin? || current_user == @listing.user) && !current_user.tenant?
       flash[:danger] = "Sorry. You can't delete this listing."
-      redirect_to :back
+      redirect_to listings_path
     else
       @listing.destroy
       redirect_to listings_path

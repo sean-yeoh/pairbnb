@@ -1,6 +1,7 @@
 class Listing < ActiveRecord::Base
   include PgSearch
   belongs_to :user
+  delegate :name, :email, :to => :user, :prefix => true
   has_many :reservations, :dependent => :destroy
   validates :city, presence: true
   validates :address, presence: true
@@ -20,5 +21,4 @@ class Listing < ActiveRecord::Base
   scope :max_price, ->(max_price) { where("price <= ?", max_price) }
   scope :city, -> (city) { where("city ILIKE ?", "%#{city}%") }
 
-  
 end

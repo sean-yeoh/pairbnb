@@ -1,6 +1,6 @@
 <div id="clearance" class="sign-up">
   <%= form_for @user do |form| %>
-  
+
     <%= render partial: '/users/form', object: form %>
 
     <div class="form-group has-feedback">
@@ -8,7 +8,7 @@
       <span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>
       <span id="passwordIcon" class="sr-only">(password)</span>
     </div>
-    
+
     <div class="submit-field">
       <%= form.submit "Sign Up", class: "btn btn-primary btn-lg btn-block" %>
     </div>

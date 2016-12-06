@@ -1,4 +1,4 @@
-<h1>Listed by <%= link_to @listing.user.email, user_path(@listing.user) %></h1>
+<h1>Listed by <%= link_to @listing.user_email, user_path(@listing.user) %></h1>
 
 <h2><%= link_to "Make a Reservation", new_listing_reservation_path(@listing) %></h2>
 <div id="calendar" style="width:50%">calendar</div>
@@ -6,8 +6,8 @@
 <% @listing.pictures.each do |picture| %>
   <%= image_tag(picture.resized.url.to_s, width: "100%") %>
 <% end %>
-<%= render 'carousel' %>
-  
+<%= render 'carousel', :listing => @listing %>
+
   <% @listing.reservations.each do |reservation| %>
     <p>This listing is reserved from <%= reservation.check_in_date %> to <%= reservation.check_out_date %> for nights.</p>
     <p><%= link_to 'Show', [@listing, reservation] %></p>

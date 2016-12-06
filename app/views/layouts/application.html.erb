@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Pairbnb</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://js.braintreegateway.com/web/3.6.0/js/client.min.js"></script>
+  <head>
+    <title>Pairbnb</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://js.braintreegateway.com/web/3.6.0/js/client.min.js"></script>
 
-  <!-- Load the Hosted Fields component. -->
-  <script src="https://js.braintreegateway.com/web/3.6.0/js/hosted-fields.min.js"></script>
-</head>
-<body>
-  
-  <% if signed_in? %>
-    <%= render 'layouts/navbar' unless @skip_footer %>
-  <% else %>
-    <%= render 'layouts/navbar_login' unless @skip_footer %>
-  <% end %>
-
-  <div id="flash">
-    <% flash.each do |key, value| %>
-      <div class="flash alert alert-<%= key %>"><%= value %></div>
+    <!-- Load the Hosted Fields component. -->
+    <script src="https://js.braintreegateway.com/web/3.6.0/js/hosted-fields.min.js"></script>
+  </head>
+  <body>
+    <% if signed_in? %>
+      <%= render 'layouts/navbar' unless @skip_footer %>
+    <% else %>
+      <%= render 'layouts/navbar_login' unless @skip_footer %>
     <% end %>
-  </div>
 
-  <%= yield %>
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="flash alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+    </div>
 
-  <%= render 'layouts/footer' unless @skip_footer %>
+    <%= yield %>
 
-</body>
+    <%= render 'layouts/footer' unless @skip_footer %>
+
+  </body>
 </html>
